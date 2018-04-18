@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>NServiceBus.Metrics.ServiceControl.Msmq</id>
+    <title>ServiceControl Monitoring Msmq plugin</title>
+    <version>$version$</version>
+    <authors>$authors$</authors>
+    <owners>$owners$</owners>
+    <licenseUrl>$licenseUrl$</licenseUrl>
+    <projectUrl>$projectUrl$</projectUrl>
+    <iconUrl>$iconUrl$</iconUrl>
+    <description>Plugin for native MSMQ queue length data to ServiceControl Monitoring instance</description>
+    <copyright>$copyright$</copyright>
+    <tags>$tags$</tags>
+    <dependencies>
+      <dependency id="NServiceBus.Metrics" version="[2.0.0,3.0.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\binaries\net452\NServiceBus.Metrics.ServiceControl.Msmq.???" target="lib\net452" />
+  </files>
+</package>
