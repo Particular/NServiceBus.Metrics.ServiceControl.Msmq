@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Logging;
-using NServiceBus.Transports;
+using NServiceBus.Transport;
 
 class ReportMsmqNativeQueueLength : Feature
 {
     public ReportMsmqNativeQueueLength()
     {
         EnableByDefault();
-        DependsOn("ServiceControlMonitoring");
+        DependsOn("NServiceBus.Metrics.ServiceControl.ReportingFeature");
         Prerequisite(ctx => ctx.Settings.Get<TransportDefinition>() is MsmqTransport, "MSMQ Transport not configured");
     }
 
@@ -20,7 +20,7 @@ class ReportMsmqNativeQueueLength : Feature
         context.Container.ConfigureComponent<MsmqNativeQueueLengthReporter>(DependencyLifecycle.SingleInstance);
         context.Container.ConfigureComponent<PeriodicallyReportQueueLength>(DependencyLifecycle.SingleInstance);
 
-        RegisterStartupTask<PeriodicallyReportQueueLength>();
+        context.RegisterStartupTask(b => new PeriodicallyReportQueueLength(b.Build<MsmqNativeQueueLengthReporter>()));
     }
 
     class PeriodicallyReportQueueLength : FeatureStartupTask
@@ -35,7 +35,7 @@ class ReportMsmqNativeQueueLength : Feature
             this.reporter = reporter;
         }
 
-        protected override void OnStart()
+        protected override Task OnStart(IMessageSession messageSession)
         {
             cancellationTokenSource = new CancellationTokenSource();
             task = Task.Run(async () =>
@@ -58,12 +58,15 @@ class ReportMsmqNativeQueueLength : Feature
                     }
                 }
             });
+
+            return Task.FromResult(0);
         }
 
-        protected override void OnStop()
+        protected override Task OnStop(IMessageSession messageSession)
         {
             cancellationTokenSource.Cancel();
-            task.GetAwaiter().GetResult();
+
+            return task;
         }
 
         static ILog Log = LogManager.GetLogger<PeriodicallyReportQueueLength>();

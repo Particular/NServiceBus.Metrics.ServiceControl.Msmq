@@ -1,33 +1,36 @@
-﻿using System;
-
-namespace SampleEndpoint
+﻿namespace SampleEndpoint
 {
-    using System.Threading;
+    using System;
+    using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
-    using NServiceBus.Metrics.ServiceControl;
+    //using NServiceBus.Logging;
 
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            var config = new BusConfiguration();
-            config.EndpointName("SomeName");
-            config.SendMetricDataToServiceControl("Particular.Monitoring");
-            config.UsePersistence<InMemoryPersistence>();
+            //LogManager.Use<DefaultFactory>().Level(LogLevel.Debug);
 
-            using (var bus = Bus.Create(config).Start())
+            var endpointConfig = new EndpointConfiguration("SomeName");
+            endpointConfig.UseTransport<MsmqTransport>();
+            endpointConfig.EnableMetrics()
+                .SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
+            endpointConfig.UsePersistence<InMemoryPersistence>();
+            endpointConfig.AuditProcessedMessagesTo("audit");
+            endpointConfig.SendFailedMessagesTo("error");
+
+            var endpoint = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
+
+            Console.WriteLine("Endpoint Started");
+
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape)
             {
-                Console.WriteLine("Bus Started");
-
-                while (Console.ReadKey(true).Key != ConsoleKey.Escape)
-                {
-                    bus.SendLocal(new SomeMessage());
-                }
-
-                Console.WriteLine("Bus Stopped");
+                await endpoint.SendLocal(new SomeMessage()).ConfigureAwait(false);
             }
+
+            await endpoint.Stop().ConfigureAwait(false);
+
+            Console.WriteLine("Bus Stopped");
         }
     }
 
@@ -38,27 +41,9 @@ namespace SampleEndpoint
 
     class SomeMessageHandler : IHandleMessages<SomeMessage>
     {
-        public void Handle(SomeMessage message)
+        public Task Handle(SomeMessage message, IMessageHandlerContext context)
         {
-            Thread.Sleep(TimeSpan.FromMilliseconds(500));
+            return Task.Delay(500);
         }
-    }
-
-
-    class AuditConfigProvider : IProvideConfiguration<AuditConfig>
-    {
-
-        public AuditConfig GetConfiguration() => new AuditConfig
-        {
-            QueueName = "audit"
-        };
-    }
-
-    class ErrorConfigProvider : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
-    {
-        public MessageForwardingInCaseOfFaultConfig GetConfiguration() => new MessageForwardingInCaseOfFaultConfig
-        {
-            ErrorQueue = "error"
-        };
     }
 }
