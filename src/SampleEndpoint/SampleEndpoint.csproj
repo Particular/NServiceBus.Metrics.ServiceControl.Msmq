@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net452</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NServiceBus.Metrics.ServiceControl.Msmq\NServiceBus.Metrics.ServiceControl.Msmq.csproj" />
+  </ItemGroup>
+
+</Project>
