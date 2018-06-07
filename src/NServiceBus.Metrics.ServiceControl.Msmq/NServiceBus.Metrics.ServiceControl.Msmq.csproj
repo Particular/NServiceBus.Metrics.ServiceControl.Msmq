@@ -10,7 +10,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.0-beta0007" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.1" />
     <PackageReference Include="NServiceBus" Version="7.0.1" />
     <PackageReference Include="GitVersionTask" Version="3.6.5" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.0.0" />
