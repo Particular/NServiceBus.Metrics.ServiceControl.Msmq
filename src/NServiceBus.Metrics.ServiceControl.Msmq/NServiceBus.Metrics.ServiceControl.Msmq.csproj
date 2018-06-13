@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <Description>Extension to NServiceBus.Metrics.ServiceControl for providing native MSMQ queue length data to ServiceControl Monitoring instance</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +11,10 @@
     <PackageReference Include="Particular.Packaging" Version="0.1.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <Description>Extension to NServiceBus.Metrics.ServiceControl for providing native MSMQ queue length data to ServiceControl Monitoring instance</Description>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="SourceLink.Create.GitHub" Version="2.5.0" PrivateAssets="All" />
     <DotNetCliToolReference Include="dotnet-sourcelink-git" Version="2.5.0" />
