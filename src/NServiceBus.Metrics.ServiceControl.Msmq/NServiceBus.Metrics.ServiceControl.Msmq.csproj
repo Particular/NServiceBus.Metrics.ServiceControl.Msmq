@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <Description>Placeholder text REPLACE THIS!</Description>
+    <Description>Extension to NServiceBus.Metrics.ServiceControl for providing native MSMQ queue length data to ServiceControl Monitoring instance</Description>
   </PropertyGroup>
 
   <ItemGroup>
