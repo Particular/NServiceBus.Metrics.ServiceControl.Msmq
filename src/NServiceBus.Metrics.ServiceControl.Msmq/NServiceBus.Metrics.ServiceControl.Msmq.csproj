@@ -2,24 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <OutputPath>..\..\binaries\</OutputPath>
-    <DocumentationFile>..\..\binaries\net452\NServiceBus.Metrics.ServiceControl.Msmq.xml</DocumentationFile>
-    <LangVersion>7</LangVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="2.1.0" />
-    <PackageReference Include="NServiceBus" Version="6.2.0" />
-    <PackageReference Include="GitVersionTask" Version="3.6.5" />
-    <PackageReference Include="NuGetPackager" Version="0.6.5" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="[2.1.0, 3.0.0)" />
+    <PackageReference Include="NServiceBus" Version="[6.2.0, 7.0.0)" />
+    <PackageReference Include="Particular.Packaging" Version="0.1.0" PrivateAssets="All" />
   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="System.Messaging">
-      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Messaging.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Messaging" />
   </ItemGroup>
-  
 
 </Project>
