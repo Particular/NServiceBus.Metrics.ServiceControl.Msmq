@@ -1,16 +1,14 @@
-﻿using System.Runtime.CompilerServices;
-using NServiceBus;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Particular.Approvals;
 using PublicApiGenerator;
 
 [TestFixture]
 public class APIApprovals
 {
     [Test]
-    [MethodImpl(MethodImplOptions.NoInlining)]
     public void Approve()
     {
-        var publicApi = ApiGenerator.GeneratePublicApi(typeof(MetricsOptionsExtensions).Assembly);
-        TestApprover.Verify(publicApi);
+        var publicApi = ApiGenerator.GeneratePublicApi(typeof(MsmqExtensions).Assembly);
+        Approver.Verify(publicApi);
     }
 }
