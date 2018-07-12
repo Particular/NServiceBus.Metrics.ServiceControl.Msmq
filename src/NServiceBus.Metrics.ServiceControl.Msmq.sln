@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Metrics.ServiceControl.Msmq", "NServiceBus.Metrics.ServiceControl.Msmq\NServiceBus.Metrics.ServiceControl.Msmq.csproj", "{17FAA608-F5E1-4A48-BFEE-C2071BDB0238}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Metrics.ServiceControl.Msmq.Tests", "NServiceBus.Metrics.ServiceControl..Msmq.Tests\NServiceBus.Metrics.ServiceControl.Msmq.Tests.csproj", "{09E52424-06AF-4948-92D8-560491309181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Metrics.ServiceControl.Msmq.Tests", "NServiceBus.Metrics.ServiceControl.Msmq.Tests\NServiceBus.Metrics.ServiceControl.Msmq.Tests.csproj", "{09E52424-06AF-4948-92D8-560491309181}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleEndpoint", "SampleEndpoint\SampleEndpoint.csproj", "{76FADEEE-3788-4F59-902A-A970167CE11F}"
 EndProject
