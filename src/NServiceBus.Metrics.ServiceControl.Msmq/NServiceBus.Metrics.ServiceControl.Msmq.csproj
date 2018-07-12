@@ -2,24 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
-    <OutputPath>..\..\binaries\</OutputPath>
-    <DocumentationFile>..\..\binaries\net452\NServiceBus.Metrics.ServiceControl.Msmq.xml</DocumentationFile>
-    <LangVersion>7</LangVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <Description>Plugin for native MSMQ queue length data to ServiceControl Monitoring instance</Description>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="2.1.0" />
-    <PackageReference Include="NServiceBus" Version="6.2.0" />
-    <PackageReference Include="GitVersionTask" Version="3.6.5" />
-    <PackageReference Include="NuGetPackager" Version="0.6.5" />
+    <PackageReference Include="NServiceBus" Version="[6.4.4, 7.0.0)" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="[2.1.0, 3.0.0)" />
+    <PackageReference Include="Particular.Packaging" Version="0.1.0" PrivateAssets="All" />
   </ItemGroup>
+
   <ItemGroup>
-    <Reference Include="System.Messaging">
-      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Messaging.dll</HintPath>
-    </Reference>
+    <PackageReference Include="SourceLink.Create.GitHub" Version="2.6.0" PrivateAssets="All" />
+    <DotNetCliToolReference Include="dotnet-sourcelink-git" Version="2.6.0" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Reference Include="System.Messaging" />
+  </ItemGroup>
 
 </Project>
