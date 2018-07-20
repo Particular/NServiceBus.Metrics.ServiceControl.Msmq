@@ -18,6 +18,9 @@
             endpointConfig.UsePersistence<InMemoryPersistence>();
             endpointConfig.AuditProcessedMessagesTo("audit");
             endpointConfig.SendFailedMessagesTo("error");
+            endpointConfig.LimitMessageProcessingConcurrencyTo(1);
+            endpointConfig.EnableInstallers();
+            endpointConfig.OverrideLocalAddress("SomeOtherName");
 
             var endpoint = await Endpoint.Start(endpointConfig).ConfigureAwait(false);
 
