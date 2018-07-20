@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\NServiceBus.snk</AssemblyOriginatorKeyFile>
     <Description>Plugin for native MSMQ queue length data to ServiceControl Monitoring instance</Description>
   </PropertyGroup>
 
@@ -11,7 +13,7 @@
   
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="[5.2.26, 6.0.0)" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="[1.3.0, 2.0.0)" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="[1.3.1, 2.0.0)" />
     <PackageReference Include="Particular.Packaging" Version="0.1.0" PrivateAssets="All" />
   </ItemGroup>
 

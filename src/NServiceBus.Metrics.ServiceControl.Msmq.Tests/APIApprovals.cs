@@ -8,7 +8,7 @@ public class APIApprovals
     [Test]
     public void Approve()
     {
-        var publicApi = ApiGenerator.GeneratePublicApi(typeof(ReportMsmqNativeQueueLength).Assembly);
+        var publicApi = ApiGenerator.GeneratePublicApi(typeof(ReportMsmqNativeQueueLength).Assembly, excludeAttributes: new[] { "System.Runtime.Versioning.TargetFrameworkAttribute" });
         Approver.Verify(publicApi);
     }
 }
