@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Logging;
@@ -20,7 +21,7 @@ class ReportMsmqNativeQueueLength : Feature
         context.Container.ConfigureComponent<MsmqNativeQueueLengthReporter>(DependencyLifecycle.SingleInstance);
         context.Container.ConfigureComponent<PeriodicallyReportQueueLength>(DependencyLifecycle.SingleInstance);
 
-        context.RegisterStartupTask(b => new PeriodicallyReportQueueLength(b.Build<MsmqNativeQueueLengthReporter>()));
+        context.RegisterStartupTask(b => new PeriodicallyReportQueueLength(b.GetRequiredService<MsmqNativeQueueLengthReporter>()));
     }
 
     class PeriodicallyReportQueueLength : FeatureStartupTask
