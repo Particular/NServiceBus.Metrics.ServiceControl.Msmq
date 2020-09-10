@@ -18,8 +18,8 @@ class ReportMsmqNativeQueueLength : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.Container.ConfigureComponent<MsmqNativeQueueLengthReporter>(DependencyLifecycle.SingleInstance);
-        context.Container.ConfigureComponent<PeriodicallyReportQueueLength>(DependencyLifecycle.SingleInstance);
+        context.Services.AddSingleton<MsmqNativeQueueLengthReporter>();
+        context.Services.AddSingleton<PeriodicallyReportQueueLength>();
 
         context.RegisterStartupTask(b => new PeriodicallyReportQueueLength(b.GetRequiredService<MsmqNativeQueueLengthReporter>()));
     }
