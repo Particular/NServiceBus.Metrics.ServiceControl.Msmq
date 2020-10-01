@@ -3,14 +3,11 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    //using NServiceBus.Logging;
 
     class Program
     {
         static async Task Main(string[] args)
         {
-            //LogManager.Use<DefaultFactory>().Level(LogLevel.Debug);
-
             var endpointConfig = new EndpointConfiguration("SomeName");
             endpointConfig.UseTransport<MsmqTransport>();
             endpointConfig.EnableMetrics()
