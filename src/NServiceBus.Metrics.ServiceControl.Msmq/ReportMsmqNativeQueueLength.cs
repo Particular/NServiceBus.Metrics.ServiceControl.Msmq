@@ -36,7 +36,7 @@ class ReportMsmqNativeQueueLength : Feature
             this.reporter = reporter;
         }
 
-        protected override Task OnStart(IMessageSession messageSession)
+        protected override Task OnStart(IMessageSession messageSession, CancellationToken cancellationToken)
         {
             cancellationTokenSource = new CancellationTokenSource();
             task = Task.Run(async () =>
@@ -49,7 +49,7 @@ class ReportMsmqNativeQueueLength : Feature
                         await Task.Delay(delayBetweenReports, cancellationTokenSource.Token).ConfigureAwait(false);
                         reporter.ReportNativeQueueLength();
                     }
-                    catch (TaskCanceledException)
+                    catch (OperationCanceledException) when (cancellationTokenSource.IsCancellationRequested)
                     {
                         // Ignore cancellation. It means we are shutting down
                     }
@@ -58,12 +58,13 @@ class ReportMsmqNativeQueueLength : Feature
                         Log.Warn("Error reporting MSMQ native queue length", ex);
                     }
                 }
-            });
+            },
+            CancellationToken.None);
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
-        protected override Task OnStop(IMessageSession messageSession)
+        protected override Task OnStop(IMessageSession messageSession, CancellationToken cancellationToken)
         {
             cancellationTokenSource.Cancel();
 
