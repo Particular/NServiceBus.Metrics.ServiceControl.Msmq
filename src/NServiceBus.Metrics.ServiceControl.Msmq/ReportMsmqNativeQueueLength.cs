@@ -36,7 +36,7 @@ class ReportMsmqNativeQueueLength : Feature
             this.reporter = reporter;
         }
 
-        protected override Task OnStart(IMessageSession messageSession, CancellationToken cancellationToken)
+        protected override Task OnStart(IMessageSession messageSession, CancellationToken cancellationToken = default)
         {
             cancellationTokenSource = new CancellationTokenSource();
             task = Task.Run(async () =>
@@ -64,7 +64,7 @@ class ReportMsmqNativeQueueLength : Feature
             return Task.CompletedTask;
         }
 
-        protected override Task OnStop(IMessageSession messageSession, CancellationToken cancellationToken)
+        protected override Task OnStop(IMessageSession messageSession, CancellationToken cancellationToken = default)
         {
             cancellationTokenSource.Cancel();
 
