@@ -46,12 +46,21 @@ class ReportMsmqNativeQueueLength : Feature
                 {
                     try
                     {
-                        await Task.Delay(delayBetweenReports, cancellationTokenSource.Token).ConfigureAwait(false);
+                        await Task.Delay(delayBetweenReports, cancellationToken).ConfigureAwait(false);
                         reporter.ReportNativeQueueLength();
                     }
-                    catch (OperationCanceledException) when (cancellationTokenSource.IsCancellationRequested)
+                    catch (OperationCanceledException ex)
                     {
                         // Ignore cancellation. It means we are shutting down
+                        if (cancellationToken.IsCancellationRequested)
+                        {
+                            Log.Debug("Message processing cancelled.", ex);
+                        }
+                        else
+                        {
+                            Log.Warn("OperationCanceledException thrown.", ex);
+                        }
+
                     }
                     catch (Exception ex)
                     {
