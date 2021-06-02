@@ -58,7 +58,7 @@ class ReportMsmqNativeQueueLength : Feature
                         {
                             await Task.Delay(delayBetweenReports, cancellationTokenSource.Token).ConfigureAwait(false);
                         }
-                        catch (OperationCanceledException) when (cancellationTokenSource.IsCancellationRequested)
+                        catch (OperationCanceledException) when (cancellationTokenSource.Token.IsCancellationRequested)
                         {
                             // private token, reporting is being stopped, don't log the exception because the stack trace of Task.Delay is not interesting
                             break;
