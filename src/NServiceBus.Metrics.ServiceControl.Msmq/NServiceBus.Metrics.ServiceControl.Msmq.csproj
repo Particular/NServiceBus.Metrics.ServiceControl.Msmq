@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net452</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\NServiceBus.snk</AssemblyOriginatorKeyFile>
     <Description>Extension to NServiceBus.Metrics.ServiceControl for providing native MSMQ queue length data to ServiceControl Monitoring instance</Description>
@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="[7.0.1, 8.0.0)" />
     <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="[3.0.2, 4.0.0)" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="[1.2.0, 2.0.0)" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="[1.0.0, 2.0.0)" />
     <PackageReference Include="Particular.Packaging" Version="1.2.1" PrivateAssets="All" />
   </ItemGroup>
 
