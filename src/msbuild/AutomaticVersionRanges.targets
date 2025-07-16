@@ -15,7 +15,7 @@
 
   <Target Name="ConvertProjectReferenceVersionsToVersionRanges" AfterTargets="_GetProjectReferenceVersions" Condition="'$(AutomaticVersionRangesEnabled)' == 'true'">
     <PropertyGroup>
-      <NumberOfProjectReferences>@(_ProjectReferencesWithVersions->Count())</NumberOfProjectReferences>
+      <NumberOfProjectReferences>@(_ProjectReferencesWithVersions-&gt;Count())</NumberOfProjectReferences>
     </PropertyGroup>
     <ConvertToVersionRange Condition="$(NumberOfProjectReferences) &gt; 0" References="@(_ProjectReferencesWithVersions)" VersionProperty="ProjectVersion">
       <Output TaskParameter="ReferencesWithVersionRanges" ItemName="_ProjectReferencesWithVersionRanges" />
@@ -28,7 +28,7 @@
 
   <Target Name="ConvertPackageReferenceVersionsToVersionRanges" BeforeTargets="CollectPackageReferences" Condition="'$(AutomaticVersionRangesEnabled)' == 'true'">
     <PropertyGroup>
-      <NumberOfPackageReferences>@(PackageReference->Count())</NumberOfPackageReferences>
+      <NumberOfPackageReferences>@(PackageReference-&gt;Count())</NumberOfPackageReferences>
     </PropertyGroup>
     <ConvertToVersionRange Condition="$(NumberOfPackageReferences) &gt; 0" References="@(PackageReference)" VersionProperty="Version">
       <Output TaskParameter="ReferencesWithVersionRanges" ItemName="_PackageReferencesWithVersionRanges" />
