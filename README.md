@@ -1,5 +1,9 @@
 # NServiceBus.Metrics.ServiceControl.Msmq
 
+> [!IMPORTANT]
+> The most recent version of this library is covered by the [extended support policy](https://docs.particular.net/nservicebus/upgrades/support-policy#extended-support) until 2031-04-16.
+> Although this repository is archived, users with extended support contracts can raise issues using the [Support Portal](https://customers.particular.net).
+
 NServiceBus.Metrics.ServiceControl.Msmq provides native queue length reporting to ServiceControl Monitoring for endpoints running on the MSMQ transport. It does it by monitoring the endpoints' queue length and then passing that data to NServiceBus.Metrics.ServiceControl which in turn sends it to an instance of the ServiceControl.Monitoring service.
 
 See the [Setup Queue Length Metrics Reporting for the MSMQ Transport documentation](https://docs.particular.net/monitoring/metrics/msmq-queue-length) for more information.
